@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wk 8 Project</title>
+</head>
+<body>
+    <h1>Wk 8 Project</h1>
+
+   <script>
+     class BaseballTeam {
+    constructor(league, teamName, city) {
+        this.league = league;
+        this.teamName = teamName;
+        this.city = city;
+    }
+}
+
+class MenuApp {
+    constructor() {
+        this.teams = [];
+    }
+
+    createTeam(league, teamName, city) {
+        const team = new BaseballTeam(league, teamName, city);
+        this.teams.push(team);
+        console.log(`Team ${team.teamName} created successfully!`);
+    }
+
+    viewTeams() {
+        if (this.teams.length === 0) {
+            console.log("No teams available.");
+        } else {
+            this.teams.forEach(team => {
+                console.log(`${team.league} League - ${team.teamName} (${team.city})`);
+            });
+        }
+    }
+
+    deleteTeam(teamName) {
+        const index = this.teams.findIndex(team => team.teamName === teamName);
+        if (index !== -1) {
+            this.teams.splice(index, 1);
+            console.log(`Team ${teamName} deleted successfully!`);
+        } else {
+            console.log(`Team ${teamName} not found.`);
+        }
+    }
+}
+
+const menu = new MenuApp();
+
+while (true) {
+    console.log("\nMenu:");
+    console.log("1. Create Team");
+    console.log("2. View Teams");
+    console.log("3. Delete Team");
+    console.log("4. Exit");
+
+    const choice = prompt("Enter your choice (1-4):");
+
+    switch (choice) {
+        case '1':
+            menu.createTeam("National", "LA Dodgers", "Los Angeles");
+            menu.createTeam("National", "SF Giants", "San Francisco");
+            menu.createTeam("American", "LV Athletics", "Las Vegas");
+            menu.createTeam("American", "LA Angels", "Los Angeles");
+            break;
+
+        case '2':
+            console.log("\nTeams:");
+            menu.viewTeams();
+            break;
+
+        case '3':
+            const teamToDelete = prompt("Enter team name to delete:");
+            menu.deleteTeam(teamToDelete);
+            break;
+
+        case '4':
+            console.log("Exiting the menu app. Goodbye!");
+            process.exit(0);
+
+        default:
+            console.log("Invalid choice. Please enter a number between 1 and 4.");
+    }
+}
+   
+       
+
+  
+
+        
+
+   </script>   
+</html>   
